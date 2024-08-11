@@ -37,7 +37,8 @@ teodor-navn
                    :color :deeppink
                    :margin 0
                    }} 
-       "Dette er en skikkelig fin paragraf med masse spennendene tekstterer"]]]]))
+       "Dette er en skikkelig fin paragraf med masse spennendene tekstterer"]
+      [:img {:src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]]]]))
 
 (defn handler [req]
   {:headers {"Content-Type" "text/html"}
