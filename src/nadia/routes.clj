@@ -28,7 +28,7 @@ teodor-navn
     [:body {:style {:background-color :grey}}
      [:div {:style {:background-color :dodgerblue}}
       [:h2 {:style {:background-color :pink}}
-       "Heiiiiii hallooo"]
+       "Heiiiiii hallooo!!!!!!!!! :D"]
       [:p {:style {:background-color :lightgreen
                    :font-size :120px
                    :color :deeppink}}
