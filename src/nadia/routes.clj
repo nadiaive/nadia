@@ -25,13 +25,18 @@ teodor-navn
 (defn hamburger []
   (html
    [:html
-    [:body {:style {:background-color :grey}}
-     [:div {:style {:background-color :dodgerblue}}
+    [:body {:style {:background-color :grey
+                    :margin 0}}
+     [:div {:style {:background-color :dodgerblue
+                    :padding-top :px
+                    :padding-bottom :8px}}
       [:h2 {:style {:background-color :pink}}
        "Heiiiiii hallooo!!!!!!!!! :D"]
       [:p {:style {:background-color :lightgreen
                    :font-size :120px
-                   :color :deeppink}}
+                   :color :deeppink
+                   :margin 0
+                   }} 
        "Dette er en skikkelig fin paragraf med masse spennendene tekstterer"]]]]))
 
 (defn handler [req]
