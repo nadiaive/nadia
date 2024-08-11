@@ -42,10 +42,15 @@ teodor-navn
                      :margin-right "auto"
                      :margin 20
                      :display "block"}
-             :src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]]]]))
+             :src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]
+      [:p "11.8:"
+       [:br]
+       "Dette var en fin dag. Jeg spiste frokost og lå i Iladalenparken. Takk for meg."
+       ]
+      ]]]))
 
 (defn handler [req]
-  {:headers {"Content-Type" "text/html"}
+  {:headers {"Content-Type" "text/html; charset=utf-8"}
    :body (str (hamburger))})
 
 (defn run-server []
