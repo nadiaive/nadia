@@ -33,12 +33,16 @@ teodor-navn
       [:h2 {:style {:background-color :pink}}
        "Heiiiiii hallooo!!!!!!!!! :D"]
       [:p {:style {:background-color :lightgreen
-                   :font-size :120px
+                   :font-size :50px
                    :color :deeppink
                    :margin 0
                    }} 
        "Dette er en skikkelig fin paragraf med masse spennendene tekstterer"]
-      [:img {:src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]]]]))
+      [:img {:style {:margin-left "auto"
+                     :margin-right "auto"
+                     :margin 20
+                     :display "block"}
+             :src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]]]]))
 
 (defn handler [req]
   {:headers {"Content-Type" "text/html"}
