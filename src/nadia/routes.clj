@@ -3,9 +3,16 @@
    [org.httpkit.server :as server]
    [hiccup2.core :refer [html]]))
 
+(def dk-morgen {:background-color "#9dd0de"
+                :color "#ff0030"})
+(def dk-ettermiddag {:background-color "#9e9e9e"
+                     :color "#434d80"})
+(def dk-natt {:background-color :black
+              :color :white})
+
 (defn dagskommentar
   [dato tekst]
-  [:p {:style {:background-color :white}}
+  [:p {:style (rand-nth [dk-morgen dk-ettermiddag dk-natt])}
    [:strong {:style {:font-size :18px}} dato] 
    [:br] tekst])
 
@@ -20,7 +27,7 @@
      [:div {:style {:background-color :dodgerblue
                     :padding-bottom :8px}}
       [:h2 {:style {:background-color :pink}}
-       "Heiiiiii hallooo!!!!!!!!! :D"]
+       "Heiiiiii hallooo!!!!!!!!! Dette er bloggen min:D"]
       [:p {:style {:background-color :lightgreen
                    :font-size :50px
                    :color :deeppink
