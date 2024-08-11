@@ -3,24 +3,14 @@
    [org.httpkit.server :as server]
    [hiccup2.core :refer [html]]))
 
-3
-"Nadia"
-str
-(str "Nadia" 5)
-(str "Nadia er best")
-(defn er-best [navn]
-  (str navn " er best"))
-(er-best "Teodor")
+(defn dagskommentar
+  [dato tekst]
+  [:p {:style {:background-color :white}}
+   [:strong {:style {:font-size :18px}} dato] 
+   [:br] tekst])
 
-(def teodor-navn "Gimle")
-"teodor-navnt"
-teodor-navn
 
-(html [:div
-       [:p]])
-
-+
-(* 1 2 3 4)
+(dagskommentar "11.8" "hei")
 
 (defn hamburger []
   (html
@@ -28,7 +18,6 @@ teodor-navn
     [:body {:style {:background-color :grey
                     :margin 0}}
      [:div {:style {:background-color :dodgerblue
-                    :padding-top :px
                     :padding-bottom :8px}}
       [:h2 {:style {:background-color :pink}}
        "Heiiiiii hallooo!!!!!!!!! :D"]
@@ -43,10 +32,9 @@ teodor-navn
                      :margin 20
                      :display "block"}
              :src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]
-      [:p "11.8:"
-       [:br]
-       "Dette var en fin dag. Jeg spiste frokost og lå i Iladalenparken. Takk for meg."
-       ]
+      (dagskommentar "11.8:" "Dette var en fin dag. Jeg spiste frokost og lå i Iladalenparken. Takk for meg.")
+      (dagskommentar "11.8" "hei")
+      (dagskommentar "10.8" "dette var en bra dag, møtte teodor.")
       ]]]))
 
 (defn handler [req]
