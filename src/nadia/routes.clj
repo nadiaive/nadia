@@ -15,7 +15,8 @@
 (defn dagskommentar
   [dato tekst]
   [:p {:style (rand-nth [dk-morgen dk-ettermiddag dk-natt dk-soloppgang])}
-   [:strong {:style {:font-size :18px}} dato] 
+   [:strong {:style {:font-size :18px 
+                     :font :arial}} dato]
    [:br] tekst])
 
 
