@@ -9,10 +9,12 @@
                      :color "#434d80"})
 (def dk-natt {:background-color :black
               :color :white})
+(def dk-soloppgang {:background-color :#ff851a61
+                    :color :white})
 
 (defn dagskommentar
   [dato tekst]
-  [:p {:style (rand-nth [dk-morgen dk-ettermiddag dk-natt])}
+  [:p {:style (rand-nth [dk-morgen dk-ettermiddag dk-natt dk-soloppgang])}
    [:strong {:style {:font-size :18px}} dato] 
    [:br] tekst])
 
@@ -27,7 +29,7 @@
      [:div {:style {:background-color :dodgerblue
                     :padding-bottom :8px}}
       [:h2 {:style {:background-color :pink}}
-       "Heiiiiii hallooo!!!!!!!!! Dette er bloggen min:D"]
+       "Heiiiiii hallooo!!!!!!!!! Denne har jeg bygget selv (med litt hjelp da)"]
       [:p {:style {:background-color :lightgreen
                    :font-size :50px
                    :color :deeppink
@@ -42,6 +44,7 @@
       (dagskommentar "11.8:" "Dette var en fin dag. Jeg spiste frokost og lå i Iladalenparken. Takk for meg.")
       (dagskommentar "11.8" "hei")
       (dagskommentar "10.8" "dette var en bra dag, møtte teodor.")
+      (dagskommentar "13.8" "Nå skriver jeg fordi jeg må øve på det vi gjorde. Det var gøy.")
       ]]]))
 
 (defn handler [req]
