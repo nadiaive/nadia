@@ -4,20 +4,25 @@
    [hiccup2.core :refer [html]]))
 
 (def dk-morgen {:background-color "#9dd0de"
-                :color "#ff0030"})
+                :color "#ff0030"
+                :padding-bottom :10px})
 (def dk-ettermiddag {:background-color "#9e9e9e"
-                     :color "#434d80"})
+                     :color "#434d80"
+                     :padding-bottom :10px})
 (def dk-natt {:background-color :black
-              :color :white})
-(def dk-soloppgang {:background-color :##e91e63
-                    :color :white})
+              :color :white
+              :padding-bottom :10px})
+(def dk-soloppgang {:background-color "#e91e63"
+                    :color :white
+                    :padding-bottom :10px})
 
 (defn dagskommentar
   [dato tekst]
   [:p {:style (rand-nth [dk-morgen dk-ettermiddag dk-natt dk-soloppgang])}
-   [:strong {:style {:font-size :18px 
+   [:strong {:style {:font-size :33px 
                      :font :arial}} dato]
-   [:br] tekst])
+   [:br] 
+   [:strong {:style {:font-size :18px}} tekst]])
 
 
 (dagskommentar "11.8" "hei")
@@ -26,7 +31,8 @@
   (html
    [:html
     [:body {:style {:background-color :grey
-                    :margin 0}}
+                    :margin 0
+                    :padding :10px}}
      [:div {:style {:background-color :dodgerblue
                     :padding-bottom :8px}}
       [:h2 {:style {:background-color :pink}}
