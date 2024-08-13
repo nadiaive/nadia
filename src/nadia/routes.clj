@@ -9,7 +9,7 @@
                      :color "#434d80"})
 (def dk-natt {:background-color :black
               :color :white})
-(def dk-soloppgang {:background-color :#ff851a61
+(def dk-soloppgang {:background-color :##e91e63
                     :color :white})
 
 (defn dagskommentar
