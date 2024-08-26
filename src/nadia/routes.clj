@@ -22,7 +22,7 @@
    [:strong {:style {:font-size :33px 
                      :font :arial}} dato]
    [:br] 
-   [:strong {:style {:font-size :18px}} tekst]])
+   [:strong {:style {:font-size :16px}} tekst]])
 
 
 (dagskommentar "11.8" "hei")
@@ -52,6 +52,7 @@
       (dagskommentar "11.8" "hei")
       (dagskommentar "10.8" "dette var en bra dag, møtte teodor.")
       (dagskommentar "13.8" "Nå skriver jeg fordi jeg må øve på det vi gjorde. Det var gøy.")
+      (dagskommentar "26.8" "I helgen spiste jeg pizza og var i bryllup.")
       ]]]))
 
 (defn handler [req]
