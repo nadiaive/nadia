@@ -59,10 +59,7 @@
     [:em "siden siste snus"]]
    [:div {:style {:height "0.5rem"}}]
    [:div {:style {:text-align "center" :font-size "4rem" :color "black"}}
-    [:strong
-     (str "👉 "
-          (tidsvarighet->beskrivelse-på-norsk tid-siden-siste-snus)
-          " 👈")]]])
+    [:strong (tidsvarighet->beskrivelse-på-norsk tid-siden-siste-snus)]]])
 
 (defn hamburger [informasjon]
   (html
