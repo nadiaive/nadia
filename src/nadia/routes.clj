@@ -105,12 +105,28 @@
       (dagskommentar "26.8" "I helgen spiste jeg pizza og var i bryllup.")
       ]]]))
 
-(defn handler [req]
+(defn hovedside [_req]
   {:headers {"Content-Type" "text/html; charset=utf-8"}
    :body (str (hamburger {:nadia/tidspunkt-akkurat-nå (Instant/now)}))})
 
+(defn ok [_req]
+  {:status 200})
+
+(defn fant-ingen-side [_req]
+  {:headers {"Content-Type" "text/html; charset=utf-8"}
+   :body (str (html [:html [:body [:p "Fant ingen side her!"
+                                   " "
+                                   [:a {:href "/"} "Gå tilbake"] " til kos og fine ting."]]]))})
+
+(defn sidevelger [req]
+  ((case ((juxt :request-method :uri) req)
+     [:head "/"] ok
+     [:get "/"] hovedside
+     fant-ingen-side)
+   req))
+
 (def wrapped-handler
-  (-> handler
+  (-> #'sidevelger
       (wrap-resource "/")))
 
 (defn run-server []
