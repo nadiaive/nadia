@@ -4,7 +4,8 @@
    [hiccup.page :refer [include-js]]
    [hiccup2.core :refer [html]]
    [org.httpkit.server :as server]
-   [ring.middleware.resource :refer [wrap-resource]])
+   [ring.middleware.resource :refer [wrap-resource]]
+   [nadia.sider :as sider])
   (:import
    [java.time Duration Instant]))
 
@@ -103,7 +104,16 @@
       (dagskommentar "10.8" "dette var en bra dag, møtte teodor.")
       (dagskommentar "13.8" "Nå skriver jeg fordi jeg må øve på det vi gjorde. Det var gøy.")
       (dagskommentar "26.8" "I helgen spiste jeg pizza og var i bryllup.")
-      ]]]))
+      (identity
+       [:div {:style {:background-color farge-knæsj-gul
+                      :padding "1rem"}}
+        [:div {:style {:font-size "1.2rem" :color farge-myk-svart}}
+         [:em "trykk for å si hei!"]]
+        [:div {:style {:height "0.5rem"}}]
+        [:div {:style {:text-align "center" :font-size "4rem" :color "black"}}
+         [:button {:hx-post sider/si-hei} "Si hei!"]]
+        [:div {:style {:font-size "1.2rem" :color farge-myk-svart}}
+         [:em (:sagt-hei-ganger @tilstand 0) " personer har sagt hei."]]])]]]))
 
 (defn hovedside [_req]
   {:headers {"Content-Type" "text/html; charset=utf-8"}
@@ -114,16 +124,28 @@
 
 (defn fant-ingen-side [_req]
   {:headers {"Content-Type" "text/html; charset=utf-8"}
-   :body (str (html [:html [:body [:p "Fant ingen side her!"
-                                   " "
-                                   [:a {:href "/"} "Gå tilbake"] " til kos og fine ting."]]]))})
+   :body (str (html [:html [:body [:p "Fant ingen side her! "
+                                   [:a {:href "/"} "Gå tilbake"] " til kos og fine ting."]]]))
+   :status 404})
+
+(def hei-alternativer
+  ["Heiiii" "Hei! 🩵" "heiiuuuuuuuu" "hoi" "HOPP" "H E I 😸"])
+
+(defn si-hei [_req]
+  (println "Si hei!")
+  (swap! tilstand update :sagt-hei-ganger (fnil inc 0))
+  {:status 200
+   :body (rand-nth hei-alternativer)})
 
 (defn sidevelger [req]
-  ((case ((juxt :request-method :uri) req)
-     [:head "/"] ok
-     [:get "/"] hovedside
-     fant-ingen-side)
-   req))
+  (let [handler (condp = ((juxt :request-method :uri) req)
+                  [:head "/"] ok
+                  [:get "/"] hovedside
+                  [:post sider/si-hei] si-hei
+                  fant-ingen-side)]
+    (prn (merge {:handler handler}
+                (select-keys req [:request-method :uri])))
+    (handler req)))
 
 (def wrapped-handler
   (-> #'sidevelger
