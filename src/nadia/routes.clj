@@ -1,9 +1,19 @@
 (ns nadia.routes
   (:require
+   [duratom.core :refer [duratom]]
+   [hiccup.page :refer [include-js]]
    [hiccup2.core :refer [html]]
-   [org.httpkit.server :as server])
+   [org.httpkit.server :as server]
+   [ring.middleware.resource :refer [wrap-resource]])
   (:import
    [java.time Duration Instant]))
+
+(def ^{:doc "Her kan vi lagre ting folk gjør!"}
+  tilstand
+  (duratom :local-file
+           :file-path (str (System/getenv "GARDEN_STORAGE") "/duratom.edn")
+           :commit-mode :sync
+           :init {}))
 
 (def dk-morgen {:background-color "#9dd0de"
                 :color "#ff0030"
@@ -67,6 +77,7 @@
 (defn hamburger [informasjon]
   (html
    [:html
+    [:head (include-js "htmx.org@2.0.2.js")]
     [:body {:style {:background-color :grey
                     :margin 0
                     :padding :10px}}
@@ -98,8 +109,12 @@
   {:headers {"Content-Type" "text/html; charset=utf-8"}
    :body (str (hamburger {:nadia/tidspunkt-akkurat-nå (Instant/now)}))})
 
+(def wrapped-handler
+  (-> handler
+      (wrap-resource "/")))
+
 (defn run-server []
-  (server/run-server #'handler {:port 7777}))
+  (server/run-server #'wrapped-handler {:port 7777}))
 
 (defonce server (run-server))
 
