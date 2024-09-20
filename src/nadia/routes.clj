@@ -132,7 +132,6 @@
   ["Heiiii" "Hei! 🩵" "heiiuuuuuuuu" "hoi" "HOPP" "H E I 😸"])
 
 (defn si-hei [_req]
-  (println "Si hei!")
   (swap! tilstand update :sagt-hei-ganger (fnil inc 0))
   {:status 200
    :body (rand-nth hei-alternativer)})
