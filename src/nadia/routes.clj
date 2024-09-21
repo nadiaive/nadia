@@ -40,7 +40,7 @@
 
 (dagskommentar "11.8" "hei")
 
-(def siste-snus-tidspunkt (Instant/parse "2024-09-04T22:00:00.0Z"))
+(def siste-snus-tidspunkt (Instant/parse "2024-09-21T00:00:00.0Z"))
 (def farge-myk-svart "#0000009c")
 (def farge-knæsj-gul "#ffef00")
 
@@ -113,7 +113,9 @@
         [:div {:style {:text-align "center" :font-size "4rem" :color "black"}}
          [:button {:hx-post sider/si-hei} "Si hei!"]]
         [:div {:style {:font-size "1.2rem" :color farge-myk-svart}}
-         [:em (:sagt-hei-ganger @tilstand 0) " personer har sagt hei."]]])]]]))
+         [:em (:sagt-hei-ganger @tilstand 0) " personer har sagt hei."]]
+        [:button {:hx-post "/napp2"}"Si ha det"]
+        ])]]]))
 
 (defn hovedside [_req]
   {:headers {"Content-Type" "text/html; charset=utf-8"}
@@ -135,15 +137,20 @@
   (swap! tilstand update :sagt-hei-ganger (fnil inc 0))
   {:status 200
    :body (rand-nth hei-alternativer)})
+@tilstand
+(defn napp2 [_req]
+  (println "napp 2")
+  )
 
 (defn sidevelger [req]
   (let [handler (condp = ((juxt :request-method :uri) req)
                   [:head "/"] ok
                   [:get "/"] hovedside
                   [:post sider/si-hei] si-hei
+                  [:post "/napp2"] napp2
                   fant-ingen-side)]
     (prn (merge {:handler handler}
-                (select-keys req [:request-method :uri])))
+                  (select-keys req [:request-method :uri])))
     (handler req)))
 
 (def wrapped-handler
@@ -162,3 +169,25 @@
   (alter-var-root #'server (constantly (run-server)))
   server
   (clojure.repl/doc server/run-server))
+
+(comment
+  ;Vi skal lære hashmap og atom.
+  {:teller 0}
+  (inc 5)
+  (def x 3)
+  x
+  (def t {:teller 3 :taller 5 :pollen "husvarm"})
+  t
+  (:teller t)
+  (:teller ())
+  (inc x)
+  (inc (:taller t))
+  (str "husvarm" "ere")
+  (defn ere [s]
+    (str s "ere")
+    )
+  (ere "husvarm")
+  (ere "varm")
+
+  )
+
