@@ -229,7 +229,8 @@
     (if (and overskrift tekst)
       (swap! tilstand update :alle-innleggene (fnil conj []) {:overskrift overskrift
                                                               :tekst tekst
-                                                              :uuid (random-uuid)})
+                                                              :uuid (random-uuid)
+                                                              :tidspunkt (str (Instant/now))})
 
       (println "Lagret ingenting!")))
   (reset! forrige-request req)
