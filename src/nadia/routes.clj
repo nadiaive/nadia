@@ -228,7 +228,8 @@
   (let [{:strs [overskrift tekst]} (:params req)]
     (if (and overskrift tekst)
       (swap! tilstand update :alle-innleggene (fnil conj []) {:overskrift overskrift
-                                                              :tekst tekst})
+                                                              :tekst tekst
+                                                              :uuid (random-uuid)})
 
       (println "Lagret ingenting!")))
   (reset! forrige-request req)
