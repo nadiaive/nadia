@@ -156,9 +156,11 @@
                :hx-post "/lagre-tekst"}
         [:div
          [:input {:type :text
-                  :name "overskrift"}]
+                  :name "overskrift"
+                  :placeholder "Overskrift"}]
          [:textarea {:style {:width "100%" :resize "vertical"}
-                     :name "tekst"}]]
+                     :name "tekst"
+                     :placeholder "Tekst"}]]
         [:button "Lagre"]])
       (identity
        [:div {:style {:background-color farge-knæsj-gul
