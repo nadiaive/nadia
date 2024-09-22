@@ -108,9 +108,11 @@
       (let [tidspunkt-akkurat-nå (:nadia/tidspunkt-akkurat-nå informasjon)
             tid-siden-siste-snus (Duration/between siste-snus-tidspunkt tidspunkt-akkurat-nå)]
         (tid-siden-siste-snus-infoboks tid-siden-siste-snus))
+
       (identity
-       [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
-        (:innlegg @tilstand)])
+       (for [innlegg (:alle-innleggene @tilstand)]
+         [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
+          innlegg]))
 
       (dagskommentar "11.8:" "Dette var en fin dag. Jeg spiste frokost og lå i Iladalenparken. Takk for meg.")
       (dagskommentar "10.8" "dette var en bra dag, møtte teodor.")
