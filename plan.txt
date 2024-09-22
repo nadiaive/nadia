@@ -1,4 +1,4 @@
 - ✓ Rydd opp: skal hete "innlegg", ikke "tekst"
 - Legg til uuid på innlegg
-- Mat
 - Legg til tidspunkt på innlegg
+- Mat
