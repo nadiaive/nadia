@@ -5,6 +5,7 @@
    [hiccup2.core :refer [html]]
    [org.httpkit.server :as server]
    [ring.middleware.resource :refer [wrap-resource]]
+   [ring.middleware.params :refer [wrap-params]]
    [nadia.sider :as sider])
   (:import
    [java.time Duration Instant]))
@@ -99,11 +100,21 @@
       (let [tidspunkt-akkurat-nå (:nadia/tidspunkt-akkurat-nå informasjon)
             tid-siden-siste-snus (Duration/between siste-snus-tidspunkt tidspunkt-akkurat-nå)]
         (tid-siden-siste-snus-infoboks tid-siden-siste-snus))
+      (identity
+       [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
+        (:innlegg @tilstand)])
+
       (dagskommentar "11.8:" "Dette var en fin dag. Jeg spiste frokost og lå i Iladalenparken. Takk for meg.")
       (dagskommentar "10.8" "dette var en bra dag, møtte teodor.")
       (dagskommentar "13.8" "Nå skriver jeg fordi jeg må øve på det vi gjorde. Det var gøy.")
       (dagskommentar "26.8" "I helgen spiste jeg pizza og var i bryllup.")
       (dagskommentar "22.9" "Morsomt, for denne helgen har jeg også spist pizza. Teodor vil at jeg skal skrive en mening.")
+      (identity
+       [:form {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}
+               :hx-post "/lagre-tekst"}
+        [:div [:textarea {:style {:width "100%"}
+                          :name "innlegg"}]]
+        [:button "Lagre"]])
       (identity
        [:div {:style {:background-color farge-knæsj-gul
                       :padding "1rem"}}
@@ -137,10 +148,27 @@
   (swap! tilstand update :sagt-hei-ganger (fnil inc 0))
   {:status 200
    :body (rand-nth hei-alternativer)})
-@tilstand
+
 (defn napp2 [_req]
-  (println "napp 2")
-  )
+  (println "napp 2"))
+
+(defonce forrige-request (atom nil))
+
+(comment
+  @forrige-request
+  @tilstand
+  (when-let [innlegg (get-in @forrige-request [:params "innlegg"])]
+    (swap! tilstand assoc :innlegg innlegg))
+  (swap! tilstand dissoc :innlegg)
+  ,)
+
+(defn lagre-tekst [req]
+  (if-let [innlegg (get-in req [:params "innlegg"])]
+    (do (swap! tilstand assoc :innlegg innlegg)
+        (println "lagret innlegg."))
+    (println "Lagret ikke innlegg."))
+  (reset! forrige-request req)
+  nil)
 
 (defn sidevelger [req]
   (let [handler (condp = ((juxt :request-method :uri) req)
@@ -148,14 +176,16 @@
                   [:get "/"] hovedside
                   [:post sider/si-hei] si-hei
                   [:post "/napp2"] napp2
+                  [:post "/lagre-tekst"] lagre-tekst
                   fant-ingen-side)]
     (prn (merge {:handler handler}
-                  (select-keys req [:request-method :uri])))
+                (select-keys req [:request-method :uri])))
     (handler req)))
 
 (def wrapped-handler
   (-> #'sidevelger
-      (wrap-resource "/")))
+      (wrap-resource "/")
+      wrap-params))
 
 (defn run-server []
   (server/run-server #'wrapped-handler {:port 7777}))
