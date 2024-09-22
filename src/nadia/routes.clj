@@ -84,6 +84,39 @@
      (str (* 3.75 (first (tidsvarighet->timer-minutter-sekunder tid-siden-siste-snus)))
           " kr spart 💸")]]])
 
+(defn vis-innlegg [innlegg]
+  (cond (string? innlegg)
+        [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
+         innlegg]
+        (and (:overskrift innlegg) (:tekst innlegg))
+        [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
+         [:strong (:overskrift innlegg)]
+         [:br]
+         (:tekst innlegg)]))
+
+(comment
+  (vis-innlegg "hei")
+  (vis-innlegg {:overskrift "I DAG"
+                :tekst "ER DET BRA"})
+  (vis-innlegg :lol)
+  @tilstand
+  (swap! tilstand
+         update :alle-innleggene
+         (fnil
+          #(conj % {:overskrift "I DAG"
+                    :tekst "ER DET BRA"})
+          []))
+
+  (swap! tilstand
+         update :alle-innleggene
+         (fnil
+          #(conj % "Gammelt format.")
+          []))
+
+  @tilstand
+
+  ,)
+
 (defn hamburger [informasjon]
   (html
    [:html
@@ -111,8 +144,7 @@
 
       (identity
        (for [innlegg (:alle-innleggene @tilstand)]
-         [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
-          innlegg]))
+         (vis-innlegg innlegg)))
 
       (dagskommentar "11.8:" "Dette var en fin dag. Jeg spiste frokost og lå i Iladalenparken. Takk for meg.")
       (dagskommentar "10.8" "dette var en bra dag, møtte teodor.")
