@@ -17,6 +17,10 @@
            :commit-mode :sync
            :init {}))
 
+(comment
+  @tilstand
+  ,)
+
 (def dk-morgen {:background-color "#9dd0de"
                 :color "#ff0030"
                 :padding-bottom :10px})
@@ -164,15 +168,29 @@
   (when-let [innlegg (get-in @forrige-request [:params "innlegg"])]
     (swap! tilstand assoc :innlegg innlegg))
   (swap! tilstand dissoc :innlegg)
+
+  (def ny-tilstand (atom {}))
+  (reset! ny-tilstand {})
+  (swap! ny-tilstand update :alle-innleggene (fnil conj []) (str "Nytt innlegg " (rand-int 100)))
+  @ny-tilstand
+
+  (conj '(element) 'ny)
+  (conj '[element] 'ny)
   ,)
 
 (defn lagre-tekst [req]
   (if-let [innlegg (get-in req [:params "innlegg"])]
     (do (swap! tilstand assoc :innlegg innlegg)
+        (swap! tilstand update :alle-innleggene (fnil conj []) innlegg)
         (println "lagret innlegg."))
     (println "Lagret ikke innlegg."))
   (reset! forrige-request req)
   nil)
+
+(comment
+  (:alle-innleggene @tilstand)
+
+  )
 
 (defn sidevelger [req]
   (let [handler (condp = ((juxt :request-method :uri) req)
