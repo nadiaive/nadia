@@ -167,8 +167,13 @@
         [:div
          [:input {:type :text
                   :name "overskrift"
-                  :placeholder "Overskrift"}]
-         [:textarea {:style {:width "100%" :resize "vertical"}
+                  :placeholder "Overskrift"
+                  :style {:width "100%"
+                          :font-size "1.2rem"}}]
+         [:textarea {:style {:width "100%"
+                             :height "7.2rem"
+                             :resize "vertical"
+                             :font-size "1.2rem"}
                      :name "tekst"
                      :placeholder "Tekst"}]]
         [:button "Lagre"]])
