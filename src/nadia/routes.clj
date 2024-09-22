@@ -169,11 +169,14 @@
                   :name "overskrift"
                   :placeholder "Overskrift"
                   :style {:width "100%"
-                          :font-size "1.2rem"}}]
+                          :font-size "1.0rem"
+                          :border 0}}]
          [:textarea {:style {:width "100%"
                              :height "7.2rem"
                              :resize "vertical"
-                             :font-size "1.2rem"}
+                             :font-size "1rem"
+                             :font-family "sans-serif"
+                             :border 0}
                      :name "tekst"
                      :placeholder "Tekst"}]]
         [:button "Lagre"]])
