@@ -100,10 +100,10 @@
             tid-siden-siste-snus (Duration/between siste-snus-tidspunkt tidspunkt-akkurat-nå)]
         (tid-siden-siste-snus-infoboks tid-siden-siste-snus))
       (dagskommentar "11.8:" "Dette var en fin dag. Jeg spiste frokost og lå i Iladalenparken. Takk for meg.")
-      (dagskommentar "11.8" "hei")
       (dagskommentar "10.8" "dette var en bra dag, møtte teodor.")
       (dagskommentar "13.8" "Nå skriver jeg fordi jeg må øve på det vi gjorde. Det var gøy.")
       (dagskommentar "26.8" "I helgen spiste jeg pizza og var i bryllup.")
+      (dagskommentar "22.9" "Morsomt, for denne helgen har jeg også spist pizza. Teodor vil at jeg skal skrive en mening.")
       (identity
        [:div {:style {:background-color farge-knæsj-gul
                       :padding "1rem"}}
