@@ -157,7 +157,7 @@
         [:div
          [:input {:type :text
                   :name "overskrift"}]
-         [:textarea {:style {:width "100%"}
+         [:textarea {:style {:width "100%" :resize "vertical"}
                      :name "tekst"}]]
         [:button "Lagre"]])
       (identity
