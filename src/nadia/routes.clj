@@ -154,8 +154,11 @@
       (identity
        [:form {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}
                :hx-post "/lagre-tekst"}
-        [:div [:textarea {:style {:width "100%"}
-                          :name "innlegg"}]]
+        [:div
+         [:input {:type :text
+                  :name "overskrift"}]
+         [:textarea {:style {:width "100%"}
+                     :name "tekst"}]]
         [:button "Lagre"]])
       (identity
        [:div {:style {:background-color farge-knæsj-gul
@@ -213,17 +216,26 @@
   ,)
 
 (defn lagre-tekst [req]
-  (if-let [innlegg (get-in req [:params "innlegg"])]
-    (do (swap! tilstand assoc :innlegg innlegg)
-        (swap! tilstand update :alle-innleggene (fnil conj []) innlegg)
-        (println "lagret innlegg."))
-    (println "Lagret ikke innlegg."))
+  (let [{:strs [overskrift tekst]} (:params req)]
+    (if (and overskrift tekst)
+      (swap! tilstand update :alle-innleggene (fnil conj []) {:overskrift overskrift
+                                                              :tekst tekst})
+
+      (println "Lagret ingenting!")))
   (reset! forrige-request req)
   nil)
 
 (comment
   (:alle-innleggene @tilstand)
 
+  @tilstand
+
+  (reset! tilstand
+          {:sagt-hei-ganger 50,
+           :innlegg
+           "Og kanskje en overskrift med dato og evt header og så en tekstparagrsf",
+           :alle-innleggene
+           []})
   )
 
 (defn sidevelger [req]
