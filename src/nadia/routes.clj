@@ -74,7 +74,11 @@
     [:strong
      (str "👉 "
           (tidsvarighet->beskrivelse-på-norsk tid-siden-siste-snus)
-          " 👈")]]])
+          " 👈")]]
+   [:div {:style {:text-align "center" :font-size "4rem" :color "black"}}
+    [:strong
+     (str (* 3.75 (first (tidsvarighet->timer-minutter-sekunder tid-siden-siste-snus)))
+          " kr spart 💸")]]])
 
 (defn hamburger [informasjon]
   (html
