@@ -1,0 +1,3 @@
+0. Rydd opp: skal hete "innlegg", ikke "tekst"
+1. Legg til uuid på innlegg
+2. Legg til tidspunkt på innlegg
