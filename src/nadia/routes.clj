@@ -127,7 +127,10 @@
 (defn hamburger [informasjon]
   (html
    [:html
-    [:head (include-js "htmx.org@2.0.2.js")]
+    [:head
+     [:meta {:charset "utf-8"}]
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
+     (include-js "htmx.org@2.0.2.js")]
     [:body {:style {:background-color :grey
                     :margin 0
                     :padding :10px}}
