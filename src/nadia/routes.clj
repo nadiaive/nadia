@@ -117,6 +117,13 @@
 
   ,)
 
+(comment
+  (clojure.edn/read-string
+   (pr-str
+    (random-uuid)))
+
+  (random-uuid))
+
 (defn hamburger [informasjon]
   (html
    [:html
@@ -153,7 +160,7 @@
       (dagskommentar "22.9" "Morsomt, for denne helgen har jeg også spist pizza. Teodor vil at jeg skal skrive en mening.")
       (identity
        [:form {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}
-               :hx-post "/lagre-tekst"}
+               :hx-post sider/lagre-tekst}
         [:div
          [:input {:type :text
                   :name "overskrift"
@@ -246,7 +253,7 @@
                   [:get "/"] hovedside
                   [:post sider/si-hei] si-hei
                   [:post "/napp2"] napp2
-                  [:post "/lagre-tekst"] lagre-tekst
+                  [:post sider/lagre-tekst] lagre-tekst
                   fant-ingen-side)]
     (prn (merge {:handler handler}
                 (select-keys req [:request-method :uri])))
