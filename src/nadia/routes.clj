@@ -146,7 +146,8 @@
       [:img {:style {:margin-left "auto"
                      :margin-right "auto"
                      :margin 20
-                     :display "block"}
+                     :display "block"
+                     :max-width "100%"}
              :src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]
       (let [tidspunkt-akkurat-nå (:nadia/tidspunkt-akkurat-nå informasjon)
             tid-siden-siste-snus (Duration/between siste-snus-tidspunkt tidspunkt-akkurat-nå)]
