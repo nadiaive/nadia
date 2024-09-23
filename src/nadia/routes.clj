@@ -164,7 +164,10 @@
       (dagskommentar "22.9" "Morsomt, for denne helgen har jeg også spist pizza. Teodor vil at jeg skal skrive en mening.")
       (identity
        [:form {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}
-               :hx-post sider/lagre-innlegg}
+               :hx-post sider/lagre-innlegg
+               :hx-swap :htmx/outerHTML
+               :hx-target (str "#" (name :id/innlegg-skjema))
+               :id :id/innlegg-skjema}
         [:div
          [:input {:type :text
                   :name "overskrift"
@@ -243,10 +246,35 @@
                                                               :tekst tekst
                                                               :uuid (random-uuid)
                                                               :tidspunkt (str (Instant/now))})
-
       (println "Lagret ingenting!")))
   (reset! forrige-request req)
-  nil)
+  {:status 200
+   :body
+   (str
+    (html
+        [:form {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}
+                :hx-post sider/lagre-innlegg
+                :hx-swap :htmx/outerHTML
+                :hx-target (str "#" (name :id/innlegg-skjema))
+                :id :id/innlegg-skjema}
+         [:div "Innlegg lagret! Du kan skrive flere innlegg hvis du vil."
+          " " (rand-nth ["🤔" "😼" "🚂" "💃"])]
+         [:div
+          [:input {:type :text
+                   :name "overskrift"
+                   :placeholder "Overskrift"
+                   :style {:width "100%"
+                           :font-size "1.0rem"
+                           :border 0}}]
+          [:textarea {:style {:width "100%"
+                              :height "7.2rem"
+                              :resize "vertical"
+                              :font-size "1rem"
+                              :font-family "sans-serif"
+                              :border 0}
+                      :name "tekst"
+                      :placeholder "Tekst"}]]
+         [:button "Lagre"]]))})
 
 (comment
   (:alle-innleggene @tilstand)
