@@ -92,7 +92,11 @@
         [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
          [:strong (:overskrift innlegg)]
          [:br]
-         (:tekst innlegg)]))
+         (:tekst innlegg)
+         (when-let [tidspunkt (:tidspunkt innlegg)]
+           (list
+            [:br]
+            [:em tidspunkt]))]))
 
 (comment
   (vis-innlegg "hei")
