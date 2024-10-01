@@ -8,7 +8,7 @@
    [ring.middleware.params :refer [wrap-params]]
    [nadia.sider :as sider])
   (:import
-   [java.time Duration Instant]))
+   [java.time Duration Instant ZoneId LocalDate LocalTime]))
 
 (def ^{:doc "Her kan vi lagre ting folk gjør!"}
   tilstand
@@ -19,6 +19,7 @@
 
 (comment
   @tilstand
+
   ,)
 
 (def dk-morgen {:background-color "#9dd0de"
@@ -84,6 +85,16 @@
      (str (* 3.75 (first (tidsvarighet->timer-minutter-sekunder tid-siden-siste-snus)))
           " kr spart 💸")]]])
 
+(def tidssone-oslo (ZoneId/of "Europe/Oslo"))
+
+(defn lokaltid [tidspunkt]
+  (let [dato (LocalDate/ofInstant tidspunkt tidssone-oslo)
+        tid (LocalTime/ofInstant tidspunkt tidssone-oslo)
+        time (.getHour tid)
+        minutt (.getMinute tid)
+        sekund (.getSecond tid)]
+    (format "%s %02d:%02d:%02d" dato time minutt sekund)))
+
 (defn vis-innlegg [innlegg]
   (cond (string? innlegg)
         [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
@@ -96,7 +107,7 @@
          (when-let [tidspunkt (:tidspunkt innlegg)]
            (list
             [:br]
-            [:em tidspunkt]))]))
+            [:em (lokaltid (Instant/parse tidspunkt))]))]))
 
 (comment
   (vis-innlegg "hei")
