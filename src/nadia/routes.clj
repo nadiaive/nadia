@@ -89,11 +89,24 @@
 
 (defn lokaltid [tidspunkt]
   (let [dato (LocalDate/ofInstant tidspunkt tidssone-oslo)
-        tid (LocalTime/ofInstant tidspunkt tidssone-oslo)
-        time (.getHour tid)
-        minutt (.getMinute tid)
-        sekund (.getSecond tid)]
-    (format "%s %02d:%02d:%02d" dato time minutt sekund)))
+        tid (LocalTime/ofInstant tidspunkt tidssone-oslo)]
+    (format "%02d.%02d.%02d kl. %02d:%02d:%02d"
+            (.getDayOfMonth dato)
+            (.getValue (.getMonth dato))
+            (.getYear dato)
+            (.getHour tid)
+            (.getMinute tid)
+            (.getSecond tid))))
+
+(comment
+  (def utc-tid (Instant/parse "2024-09-27T14:50:13.211633034Z"))
+  (def lokal-dato (LocalDate/ofInstant utc-tid tidssone-oslo))
+
+  (.getDayOfMonth lokal-dato)
+  (.getValue (.getMonth lokal-dato))
+  (.getYear lokal-dato)
+
+  ,)
 
 (defn vis-innlegg [innlegg]
   (cond (string? innlegg)
