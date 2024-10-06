@@ -163,14 +163,12 @@
                     :margin 0
                     :padding :10px}}
      [:div {:style {:background-color :dodgerblue
-                    :padding-bottom :8px}}
-      [:h2 {:style {:background-color :pink}}
-       "Heiiiiii hallooo!!!!!!!!! Denne har jeg bygget selv (med litt hjelp da)"]
+                    :padding-bottom :8px}} 
       [:p {:style {:background-color :lightgreen
                    :font-size :50px
                    :color :deeppink
                    :margin 0}}
-       "Dette er en skikkelig fin paragraf med masse spennendene tekstterer"]
+       "Dette er siden min. Etterhvert skal jeg legge ut masse greier."]
       [:img {:style {:margin-left "auto"
                      :margin-right "auto"
                      :margin 20
@@ -183,13 +181,8 @@
 
       (identity
        (for [innlegg (:alle-innleggene @tilstand)]
-         (vis-innlegg innlegg)))
-
-      (dagskommentar "11.8:" "Dette var en fin dag. Jeg spiste frokost og lå i Iladalenparken. Takk for meg.")
-      (dagskommentar "10.8" "dette var en bra dag, møtte teodor.")
-      (dagskommentar "13.8" "Nå skriver jeg fordi jeg må øve på det vi gjorde. Det var gøy.")
-      (dagskommentar "26.8" "I helgen spiste jeg pizza og var i bryllup.")
-      (dagskommentar "22.9" "Morsomt, for denne helgen har jeg også spist pizza. Teodor vil at jeg skal skrive en mening.")
+         (vis-innlegg innlegg))) 
+      
       (identity
        [:form {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}
                :hx-post sider/lagre-innlegg
