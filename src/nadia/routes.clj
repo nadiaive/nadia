@@ -338,7 +338,7 @@ Denne har ikke linjeskift som funker.")
   (let [handler (condp = ((juxt :request-method :uri) req)
                   [:head "/"] ok
                   [:get "/"] hovedside
-                  [:post sider/si-hei] si-h
+                  [:post sider/si-hei] si-hei
                   [:post "/knapp2"] napp2
                   [:post sider/lagre-innlegg] lagre-innlegg
                   fant-ingen-side)]
