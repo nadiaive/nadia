@@ -6,7 +6,8 @@
    [org.httpkit.server :as server]
    [ring.middleware.resource :refer [wrap-resource]]
    [ring.middleware.params :refer [wrap-params]]
-   [nadia.sider :as sider])
+   [nadia.sider :as sider]
+   [clojure.string :as str])
   (:import
    [java.time Duration Instant ZoneId LocalDate LocalTime]))
 
@@ -107,7 +108,9 @@
   (.getYear lokal-dato)
 
   ,)
-
+(defn linjeskift [s]
+  (interpose [:br]
+             (str/split-lines s)))
 (defn vis-innlegg [innlegg]
   (cond (string? innlegg)
         [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
@@ -116,7 +119,7 @@
         [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
          [:strong (:overskrift innlegg)]
          [:br]
-         (:tekst innlegg)
+         (linjeskift (:tekst innlegg))
          (when-let [tidspunkt (:tidspunkt innlegg)]
            (list
             [:br]
@@ -151,6 +154,21 @@
     (random-uuid)))
 
   (random-uuid))
+
+"Enda en ny boks! 
+Denne har ikke linjeskift som funker. "
+
+[:div "Dette er en tekst"
+ [:br]
+ "dette er linjeskift"]
+
+(do 
+  
+  (linjeskift "Enda en ny boks!
+Denne har ikke linjeskift som funker.")
+  )
+
+(interpose [:br] ["Enda en ny boks!" "Denne har ikke linjeskift som funker."])
 
 (defn hamburger [informasjon]
   (html
@@ -216,7 +234,13 @@
         [:div {:style {:font-size "1.2rem" :color farge-myk-svart}}
          [:em (:sagt-hei-ganger @tilstand 0) " personer har sagt hei."]]
         [:button {:hx-post "/napp2"}"Si ha det"]
-        ])]]]))
+        ])
+      [:div "Enda en ny boks! 
+             Denne har ikke linjeskift som funker. "]
+      [:div "Dette er en tekst"
+       [:br]
+       "dette er linjeskift"]
+      ]]]))
 
 (defn hovedside [_req]
   {:headers {"Content-Type" "text/html; charset=utf-8"}
@@ -314,7 +338,7 @@
   (let [handler (condp = ((juxt :request-method :uri) req)
                   [:head "/"] ok
                   [:get "/"] hovedside
-                  [:post sider/si-hei] si-hei
+                  [:post sider/si-hei] si-h
                   [:post "/knapp2"] napp2
                   [:post sider/lagre-innlegg] lagre-innlegg
                   fant-ingen-side)]
