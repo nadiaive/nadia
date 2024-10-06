@@ -315,7 +315,7 @@
                   [:head "/"] ok
                   [:get "/"] hovedside
                   [:post sider/si-hei] si-hei
-                  [:post "/napp2"] napp2
+                  [:post "/knapp2"] napp2
                   [:post sider/lagre-innlegg] lagre-innlegg
                   fant-ingen-side)]
     (prn (merge {:handler handler}
