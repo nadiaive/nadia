@@ -182,7 +182,7 @@ Denne har ikke linjeskift som funker.")
     [:body {:style {:background-color :grey
                     :margin 0
                     :padding :10px}}
-     [:div {:style {:background-color :dodgerblue
+     [:div {:style {:background-color :black
                     :padding-bottom :8px}} 
       [:p {:style {:background-color :lightgreen
                    :font-size :50px
