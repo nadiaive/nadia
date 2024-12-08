@@ -1,13 +1,13 @@
 (ns nadia.routes
   (:require
+   [clojure.string :as str]
    [duratom.core :refer [duratom]]
    [hiccup.page :refer [include-js]]
    [hiccup2.core :refer [html]]
-   [org.httpkit.server :as server]
-   [ring.middleware.resource :refer [wrap-resource]]
-   [ring.middleware.params :refer [wrap-params]]
    [nadia.sider :as sider]
-   [clojure.string :as str])
+   [org.httpkit.server :as server]
+   [ring.middleware.params :refer [wrap-params]]
+   [ring.middleware.resource :refer [wrap-resource]])
   (:import
    [java.time Duration Instant ZoneId LocalDate LocalTime]))
 
@@ -193,9 +193,7 @@ Denne har ikke linjeskift som funker.")
                      :display "block"
                      :max-width "100%"}
              :src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]
-      (let [tidspunkt-akkurat-nå (:nadia/tidspunkt-akkurat-nå informasjon)
-            tid-siden-siste-snus (Duration/between siste-snus-tidspunkt tidspunkt-akkurat-nå)]
-        (tid-siden-siste-snus-infoboks tid-siden-siste-snus))
+      
 
       (identity
        (for [innlegg (:alle-innleggene @tilstand)]
