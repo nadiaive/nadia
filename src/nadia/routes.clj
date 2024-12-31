@@ -117,8 +117,10 @@
          innlegg]
         (and (:overskrift innlegg) (:tekst innlegg))
         [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
-         [:strong (:overskrift innlegg)]
-         [:br]
+         (when (not-empty (:overskrift innlegg))
+           (list
+            [:strong (:overskrift innlegg)]
+            [:br]))
          (linjeskift (:tekst innlegg))
          (when-let [tidspunkt (:tidspunkt innlegg)]
            (list
