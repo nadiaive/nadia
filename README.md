@@ -22,6 +22,13 @@
 6. Kjør `garden run` fra terminalen
 7. Trykk på URL-en i terminalen for å se nettsiden lokalt.
 
+# Hvordan få ut endringer
+
+1. Lagre alle filer
+2. Commit alt
+3. `git push`
+4. `garden deploy`
+
 # Hvordan hente endringer med Git - Teodor
 
 # Mål 1.1.24
