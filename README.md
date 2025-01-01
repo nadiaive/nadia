@@ -22,6 +22,15 @@
 6. Kjør `garden run` fra terminalen
 7. Trykk på URL-en i terminalen for å se nettsiden lokalt.
 
+# Hvordan koble til REPL
+
+1. `Cmd+Shift+P`
+2. Calva: Connect to a running REPL server in the project
+3. Velg 'deps.edn'
+4. Velg port :6666 (Port of the beast - sitat Teodor 1.124 16.56)
+
+Du kan nå bruke `Option+Enter` til å evaluere Clojure-uttrykk.
+
 # Hvordan få ut endringer
 
 1. Lagre alle filer
@@ -34,9 +43,10 @@
 # Mål 1.1.24
 
 - Lage en ordentlig overskrift (h1?)
-    - Endre teksten
+    - ✓ Endre teksten
+    - Fjerne bakgrunnsfargen og tekstfargen
     - Midtstille skriften
-    - Fjerne bakgrunnsfargen
+    
 
 Utfordringer:
 
