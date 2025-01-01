@@ -184,7 +184,7 @@ Denne har ikke linjeskift som funker.")
                     :padding :10px}}
      [:div {:style {:background-color :black
                     :padding-bottom :8px}} 
-      [:p {:style {:font-size :50px
+      [:h1 {:style {
                    :color :white
                    :margin 0}}
        "Velkommen til Nadias hjemmeside!:)"]
