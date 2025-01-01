@@ -9,7 +9,7 @@
    [ring.middleware.params :refer [wrap-params]]
    [ring.middleware.resource :refer [wrap-resource]])
   (:import
-   [java.time Duration Instant ZoneId LocalDate LocalTime]))
+   [java.time Instant ZoneId LocalDate LocalTime]))
 
 (def ^{:doc "Her kan vi lagre ting folk gjør!"}
   tilstand
@@ -18,73 +18,8 @@
            :commit-mode :sync
            :init {}))
 
-(comment
-  @tilstand
-
-  ,)
-
-(def dk-morgen {:background-color "#9dd0de"
-                :color "#ff0030"
-                :padding-bottom :10px})
-(def dk-ettermiddag {:background-color "#9e9e9e"
-                     :color "#434d80"
-                     :padding-bottom :10px})
-(def dk-natt {:background-color :black
-              :color :white
-              :padding-bottom :10px})
-(def dk-soloppgang {:background-color "#e91e63"
-                    :color :white
-                    :padding-bottom :10px})
-
-(defn dagskommentar
-  [dato tekst]
-  [:p {:style (rand-nth [dk-morgen dk-ettermiddag dk-natt dk-soloppgang])}
-   [:strong {:style {:font-size :33px 
-                     :font :arial}} dato]
-   [:br] 
-   [:strong {:style {:font-size :16px}} tekst]])
-
-
-(dagskommentar "11.8" "hei")
-
-(def siste-snus-tidspunkt (Instant/parse "2024-09-21T00:00:00.0Z"))
 (def farge-myk-svart "#0000009c")
 (def farge-knæsj-gul "#ffef00")
-
-(defn tidsvarighet->timer-minutter-sekunder [tidsvarighet]
-  (let [timer (.toHours tidsvarighet)
-        minutter (- (.toMinutes tidsvarighet)
-                    (* 60 timer))
-        sekunder (- (.toSeconds tidsvarighet)
-                    (* 60 60 timer)
-                    (* 60 minutter))]
-    [timer minutter sekunder]))
-
-#_ (tidsvarighet->timer-minutter-sekunder (Duration/between siste-snus-tidspunkt current-time))
-
-(defn tidsvarighet->beskrivelse-på-norsk [tidsvarighet]
-  (let [[timer minutter sekunder] (tidsvarighet->timer-minutter-sekunder tidsvarighet)]
-    (str timer " timer"
-         " " minutter " minutter"
-         " " sekunder " sekunder")))
-
-#_ (tidsvarighet->beskrivelse-på-norsk (Duration/between siste-snus-tidspunkt current-time))
-
-(defn tid-siden-siste-snus-infoboks [tid-siden-siste-snus]
-  [:div {:style {:background-color farge-knæsj-gul
-                 :padding "1rem"}}
-   [:div {:style {:font-size "1.2rem" :color farge-myk-svart}}
-    [:em "siden siste snus"]]
-   [:div {:style {:height "0.5rem"}}]
-   [:div {:style {:text-align "center" :font-size "4rem" :color "black"}}
-    [:strong
-     (str "👉 "
-          (tidsvarighet->beskrivelse-på-norsk tid-siden-siste-snus)
-          " 👈")]]
-   [:div {:style {:text-align "center" :font-size "4rem" :color "black"}}
-    [:strong
-     (str (* 3.75 (first (tidsvarighet->timer-minutter-sekunder tid-siden-siste-snus)))
-          " kr spart 💸")]]])
 
 (def tidssone-oslo (ZoneId/of "Europe/Oslo"))
 
@@ -99,18 +34,10 @@
             (.getMinute tid)
             (.getSecond tid))))
 
-(comment
-  (def utc-tid (Instant/parse "2024-09-27T14:50:13.211633034Z"))
-  (def lokal-dato (LocalDate/ofInstant utc-tid tidssone-oslo))
-
-  (.getDayOfMonth lokal-dato)
-  (.getValue (.getMonth lokal-dato))
-  (.getYear lokal-dato)
-
-  ,)
 (defn linjeskift [s]
   (interpose [:br]
              (str/split-lines s)))
+
 (defn vis-innlegg [innlegg]
   (cond (string? innlegg)
         [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
@@ -127,50 +54,12 @@
             [:br]
             [:em (lokaltid (Instant/parse tidspunkt))]))]))
 
-(comment
-  (vis-innlegg "hei")
-  (vis-innlegg {:overskrift "I DAG"
-                :tekst "ER DET BRA"})
-  (vis-innlegg :lol)
-  @tilstand
-  (swap! tilstand
-         update :alle-innleggene
-         (fnil
-          #(conj % {:overskrift "I DAG"
-                    :tekst "ER DET BRA"})
-          []))
-
-  (swap! tilstand
-         update :alle-innleggene
-         (fnil
-          #(conj % "Gammelt format.")
-          []))
-
-  @tilstand
-
-  ,)
-
-(comment
-  (clojure.edn/read-string
-   (pr-str
-    (random-uuid)))
-
-  (random-uuid))
-
 "Enda en ny boks! 
 Denne har ikke linjeskift som funker. "
 
 [:div "Dette er en tekst"
  [:br]
  "dette er linjeskift"]
-
-(do 
-  
-  (linjeskift "Enda en ny boks!
-Denne har ikke linjeskift som funker.")
-  )
-
-(interpose [:br] ["Enda en ny boks!" "Denne har ikke linjeskift som funker."])
 
 (defn hamburger [informasjon]
   (html
