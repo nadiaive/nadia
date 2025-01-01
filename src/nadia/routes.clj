@@ -184,11 +184,10 @@ Denne har ikke linjeskift som funker.")
                     :padding :10px}}
      [:div {:style {:background-color :black
                     :padding-bottom :8px}} 
-      [:p {:style {:background-color :lightgreen
-                   :font-size :50px
-                   :color :deeppink
+      [:p {:style {:font-size :50px
+                   :color :white
                    :margin 0}}
-       "Velkommen til Nadias hjemmeside!"]
+       "Velkommen til Nadias hjemmeside!:)"]
       [:img {:style {:margin-left "auto"
                      :margin-right "auto"
                      :margin 20
