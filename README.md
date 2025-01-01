@@ -55,7 +55,7 @@ Teodors juksekode:
     - ✓ Endre teksten
     - ✓ Fjerne bakgrunnsfargen og tekstfargen
     - ✓ Midtstille skriften
-    - Endre fonttype
+    - ✓ Endre fonttype
     
 
 Utfordringer:
