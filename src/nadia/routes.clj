@@ -204,7 +204,10 @@ Denne har ikke linjeskift som funker.")
          (vis-innlegg innlegg))) 
       
       (identity
-       [:form {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}
+       [:form {:style {:background-color farge-knæsj-gul 
+                       :padding "1rem" 
+                       :margin-top "1rem" 
+                       :margin-bottom "1rem"}
                :hx-post sider/lagre-innlegg
                :hx-swap :htmx/outerHTML
                :hx-target (str "#" (name :id/innlegg-skjema))
