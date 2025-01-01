@@ -54,7 +54,7 @@
             [:br]
             [:em (lokaltid (Instant/parse tidspunkt))]))]))
 
-"Enda en ny boks! 
+"Enda en ny boks!
 Denne har ikke linjeskift som funker. "
 
 [:div "Dette er en tekst"
@@ -72,7 +72,7 @@ Denne har ikke linjeskift som funker. "
                     :margin 0
                     :padding :10px}}
      [:div {:style {:background-color :black
-                    :padding-bottom :8px}} 
+                    :padding-bottom :8px}}
       [:h1 {:style {:text-align :center
                     :padding-top :20px
                     :padding-bottom :20px
@@ -86,16 +86,16 @@ Denne har ikke linjeskift som funker. "
                      :display "block"
                      :max-width "100%"}
              :src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]
-      
+
 
       (identity
        (for [innlegg (:alle-innleggene @tilstand)]
-         (vis-innlegg innlegg))) 
-      
+         (vis-innlegg innlegg)))
+
       (identity
-       [:form {:style {:background-color farge-knæsj-gul 
-                       :padding "1rem" 
-                       :margin-top "1rem" 
+       [:form {:style {:background-color farge-knæsj-gul
+                       :padding "1rem"
+                       :margin-top "1rem"
                        :margin-bottom "1rem"}
                :hx-post sider/lagre-innlegg
                :hx-swap :htmx/outerHTML
@@ -129,7 +129,7 @@ Denne har ikke linjeskift som funker. "
          [:em (:sagt-hei-ganger @tilstand 0) " personer har sagt hei."]]
         [:button {:hx-post "/napp2"}"Si ha det"]
         ])
-      [:div "Enda en ny boks! 
+      [:div "Enda en ny boks!
              Denne har ikke linjeskift som funker. "]
       [:div "Dette er en tekst"
        [:br]
@@ -236,7 +236,7 @@ Denne har ikke linjeskift som funker. "
                   [:post "/knapp2"] napp2
                   [:post sider/lagre-innlegg] lagre-innlegg
                   fant-ingen-side)]
-    
+
     (handler req)))
 
 (def wrapped-handler
@@ -277,4 +277,3 @@ Denne har ikke linjeskift som funker. "
   (ere "varm")
 
   )
-
