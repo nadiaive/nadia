@@ -44,8 +44,8 @@ Du kan nå bruke `Option+Enter` til å evaluere Clojure-uttrykk.
 
 - Lage en ordentlig overskrift (h1?)
     - ✓ Endre teksten
-    - Fjerne bakgrunnsfargen og tekstfargen
-    - Midtstille skriften
+    - ✓ Fjerne bakgrunnsfargen og tekstfargen
+    - ✓ Midtstille skriften
     - Endre fonttype
     
 
