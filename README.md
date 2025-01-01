@@ -26,8 +26,8 @@
 
 1. `Cmd+Shift+P`
 2. Calva: Connect to a running REPL server in the project
-3. Velg 'deps.edn'
-4. Velg port :6666 (Port of the beast - sitat Teodor 1.124 16.56)
+3. Velg `deps.edn`
+4. Velg port :6666 (Port of the beast - sitat Teodor 1.1.24 16.56)
 
 Du kan nå bruke `Option+Enter` til å evaluere Clojure-uttrykk.
 
@@ -37,6 +37,15 @@ Du kan nå bruke `Option+Enter` til å evaluere Clojure-uttrykk.
 2. Commit alt
 3. `git push`
 4. `garden deploy`
+
+Teodors juksekode:
+
+1. `ctrl+c` for å stoppe
+2. `git push && garden deploy && garden run`
+3. `Cmd+Shift+P`
+4. Calva: Connect to a running REPL server in the project
+5. Velg `deps.edn`
+6. Velg port :6666 (Port of the beast - sitat Teodor 1.1.24 kl 16.56)
 
 # Hvordan hente endringer med Git - Teodor
 

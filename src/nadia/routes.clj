@@ -187,8 +187,9 @@ Denne har ikke linjeskift som funker.")
       [:h1 {:style {:text-align :center
                     :padding-top :20px
                     :padding-bottom :20px
-                   :color :white
-                   :margin 0}}
+                    :font-family "Optima, sans-serif"
+                    :color :white
+                    :margin 0}}
        "Velkommen til Nadias hjemmeside!:)"]
       [:img {:style {:margin-left "auto"
                      :margin-right "auto"
