@@ -70,19 +70,9 @@ Teodors juksekode:
 - Endre bilde til noe annet
 - Lage en basic logo
 
-Utfordringer:
+# Ideer på sikt
 
-- Starte Calva
-- Koble til apps.garden
-- Koble på Github, ta git pull så man er synca der
-- Sjekke lokalt før jeg kjører den ut i Git
-
-# Andre mål
-
+- Kunne minimere kommentarene så man ikke får en evig scroll
+- Få de nyeste kommentarene først
 - Ta bort bildet
 - Lage nye temaer
-
-
-
-
- 
