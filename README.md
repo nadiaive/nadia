@@ -13,9 +13,9 @@
 
 # Hvordan starte - Teodor
 
-1. Åpne VSCode
-2. Åpne README.md
-3. Åpne `nadia`-prosjektet i VSCode
+1. Åpne VSCode og lukk terminalen som kommer opp
+2. Åpne `nadia`-prosjektet i VSCode
+3. Åpne README.md
 4. Hent nye endringer med Source Control i VSCode
 5. Åpne en terminal i `nadia`-mappen
     - Bruk Kitty :)
@@ -56,6 +56,7 @@ Teodors juksekode:
     - ✓ Fjerne bakgrunnsfargen og tekstfargen
     - ✓ Midtstille skriften
     - ✓ Endre fonttype
+    - Fjerne smilefjeset
     
 
 Utfordringer:
