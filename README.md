@@ -61,6 +61,14 @@ Teodors juksekode:
     - ✓ Endre fonttype
     - ✓ Fjerne smilefjeset
     
+# Oppgave til neste gang
+- Skrive en brødtekst under overskriften om denne siden
+    - Skriv teksten
+    - Lag styling
+    - Hvis du tør, gjør noe nytt
+
+- Endre bilde til noe annet
+- Lage en basic logo
 
 Utfordringer:
 
