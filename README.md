@@ -34,8 +34,8 @@
 # Mål 1.1.24
 
 - Lage en ordentlig overskrift (h1?)
-    - Midtstille skriften
     - Endre teksten
+    - Midtstille skriften
     - Fjerne bakgrunnsfargen
 
 Utfordringer:

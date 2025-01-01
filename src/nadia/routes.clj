@@ -188,7 +188,7 @@ Denne har ikke linjeskift som funker.")
                    :font-size :50px
                    :color :deeppink
                    :margin 0}}
-       "Dette er siden min. Etterhvert skal jeg legge ut masse greier."]
+       "Velkommen til Nadias hjemmeside!"]
       [:img {:style {:margin-left "auto"
                      :margin-right "auto"
                      :margin 20
