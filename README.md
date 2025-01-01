@@ -24,19 +24,22 @@
 
 # Hvordan koble til REPL
 
-1. `Cmd+Shift+P`
-2. Calva: Connect to a running REPL server in the project
-3. Velg `deps.edn`
-4. Velg port :6666 (Port of the beast - sitat Teodor 1.1.24 16.56)
+1. Åpne `routes.clj` (eventuelt en annen clojure-fil)
+2. `Cmd+Shift+P`
+3. Calva: Connect to a running REPL server in the project
+4. Velg `deps.edn`
+5. Velg port :6666 (Port of the beast - sitat Teodor 1.1.24 16.56)
 
 Du kan nå bruke `Option+Enter` til å evaluere Clojure-uttrykk.
 
 # Hvordan få ut endringer
 
-1. Lagre alle filer
-2. Commit alt
-3. `git push`
-4. `garden deploy`
+1. Bruk alltid `option+enter`og sjekk hvordan det ser ut lokalt før du lagrer
+2. Lagre alle filer
+3. Commit alt (fra Source Control i VSCode)
+4. `git push`
+5. `garden deploy` 
+6. Eller sjekk Teodors juksekode under som du bruker i terminalen:
 
 Teodors juksekode:
 
@@ -56,7 +59,7 @@ Teodors juksekode:
     - ✓ Fjerne bakgrunnsfargen og tekstfargen
     - ✓ Midtstille skriften
     - ✓ Endre fonttype
-    - Fjerne smilefjeset
+    - ✓ Fjerne smilefjeset
     
 
 Utfordringer:
