@@ -342,8 +342,7 @@ Denne har ikke linjeskift som funker.")
                   [:post "/knapp2"] napp2
                   [:post sider/lagre-innlegg] lagre-innlegg
                   fant-ingen-side)]
-    (prn (merge {:handler handler}
-                (select-keys req [:request-method :uri])))
+    
     (handler req)))
 
 (def wrapped-handler
