@@ -115,7 +115,7 @@ Denne har ikke linjeskift som funker. "
                              :font-family "sans-serif"
                              :border 0}
                      :name "tekst"
-                     :placeholder "Tekst"}]]
+                     :placeholder "Skriv noe kult"}]]
         [:button "Lagre"]])
       (identity
        [:div {:style {:background-color farge-knæsj-gul
