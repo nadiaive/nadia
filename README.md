@@ -55,7 +55,7 @@ Teodors juksekode:
 1. Refactor rename (F2 på VSCode)
 2. Evaluer hele fila med `ctrl+option+c` og så trykker du `enter`
 
-# Mål 1.1.24
+# Mål 1.1.25
 
 - Lage en ordentlig overskrift (h1?)
     - ✓ Endre teksten
@@ -64,12 +64,15 @@ Teodors juksekode:
     - ✓ Endre fonttype
     - ✓ Fjerne smilefjeset
     
-# Oppgave til neste gang
-- Skrive en brødtekst under overskriften om denne siden
+# 3.1.25
+
+- ✓ Skrive en brødtekst under overskriften om denne siden
     - Skriv teksten
     - Lag styling
-    - Hvis du tør, gjør noe nytt
 
+# Oppgaver til neste gang
+
+- Hvis du tør, gjør noe nytt
 - Endre bilde til noe annet
 - Lage en basic logo
 
@@ -77,5 +80,3 @@ Teodors juksekode:
 
 - Kunne minimere kommentarene så man ikke får en evig scroll
 - Få de nyeste kommentarene først
-- Ta bort bildet
-- Lage nye temaer
