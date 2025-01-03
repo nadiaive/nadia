@@ -80,6 +80,14 @@ Denne har ikke linjeskift som funker. "
                     :color :white
                     :margin 0}}
        "Velkommen til Nadias hjemmeside!"]
+      [:p {:style {:color :white
+                   :font-family "Optima, sans-serif"
+                   :text-align :center
+                   :padding-bottom :20px
+                   :font-size :20px
+                   :margin-left :100px
+                   :margin-right :100px}}
+       "Du klarte å ramle inn her! Foreløpig er formålet med denne siden udefinert, så vi kan vel kanskje si at det mest av alt er for at jeg skal lære meg noen nye greier. Vi får se! Du kan uansett legge igjen en kommentar om du vil. Det hadde vært hyggelig!"]
       [:img {:style {:margin-left "auto"
                      :margin-right "auto"
                      :margin 20
