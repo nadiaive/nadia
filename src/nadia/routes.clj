@@ -18,8 +18,8 @@
            :commit-mode :sync
            :init {}))
 
-(def farge-myk-svart "#0000009c")
-(def farge-knæsj-gul "#ffef00")
+(def inputfarge-kommentarfelt "#000009")
+(def bakgrunnsfarge-kommentarboks "#CCCCFF")
 
 (def tidssone-oslo (ZoneId/of "Europe/Oslo"))
 
@@ -40,10 +40,10 @@
 
 (defn vis-innlegg [innlegg]
   (cond (string? innlegg)
-        [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
+        [:div {:style {:background-color bakgrunnsfarge-kommentarboks :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
          innlegg]
         (and (:overskrift innlegg) (:tekst innlegg))
-        [:div {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
+        [:div {:style {:background-color bakgrunnsfarge-kommentarboks :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}}
          (when (not-empty (:overskrift innlegg))
            (list
             [:strong (:overskrift innlegg)]
@@ -101,7 +101,7 @@ Denne har ikke linjeskift som funker. "
          (vis-innlegg innlegg)))
 
       (identity
-       [:form {:style {:background-color farge-knæsj-gul
+       [:form {:style {:background-color bakgrunnsfarge-kommentarboks
                        :padding "1rem"
                        :margin-top "1rem"
                        :margin-bottom "1rem"}
@@ -112,7 +112,7 @@ Denne har ikke linjeskift som funker. "
         [:div
          [:input {:type :text
                   :name "overskrift"
-                  :placeholder "Overskrift"
+                  :placeholder "Ta med en overskrift hvis du føler for det"
                   :style {:width "100%"
                           :font-size "1.0rem"
                           :border 0}}]
@@ -126,14 +126,14 @@ Denne har ikke linjeskift som funker. "
                      :placeholder "Skriv noe kult"}]]
         [:button "Lagre"]])
       (identity
-       [:div {:style {:background-color farge-knæsj-gul
+       [:div {:style {:background-color bakgrunnsfarge-kommentarboks
                       :padding "1rem"}}
-        [:div {:style {:font-size "1.2rem" :color farge-myk-svart}}
+        [:div {:style {:font-size "1.2rem" :color inputfarge-kommentarfelt}}
          [:em "trykk for å si hei!"]]
         [:div {:style {:height "0.5rem"}}]
         [:div {:style {:text-align "center" :font-size "4rem" :color "black"}}
          [:button {:hx-post sider/si-hei} "Si hei!"]]
-        [:div {:style {:font-size "1.2rem" :color farge-myk-svart}}
+        [:div {:style {:font-size "1.2rem" :color inputfarge-kommentarfelt}}
          [:em (:sagt-hei-ganger @tilstand 0) " personer har sagt hei."]]
         [:button {:hx-post "/napp2"}"Si ha det"]
         ])
@@ -199,7 +199,7 @@ Denne har ikke linjeskift som funker. "
    :body
    (str
     (html
-        [:form {:style {:background-color farge-knæsj-gul :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}
+        [:form {:style {:background-color bakgrunnsfarge-kommentarboks :padding "1rem" :margin-top "1rem" :margin-bottom "1rem"}
                 :hx-post sider/lagre-innlegg
                 :hx-swap :htmx/outerHTML
                 :hx-target (str "#" (name :id/innlegg-skjema))
