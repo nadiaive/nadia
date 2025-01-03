@@ -50,7 +50,10 @@ Teodors juksekode:
 5. Velg `deps.edn`
 6. Velg port :6666 (Port of the beast - sitat Teodor 1.1.24 kl 16.56)
 
-# Hvordan hente endringer med Git - Teodor
+# Hvordan endre navn på en variabel
+
+1. Refactor rename (F2 på VSCode)
+2. Evaluer hele fila med `ctrl+option+c` og så trykker du `enter`
 
 # Mål 1.1.24
 
