@@ -80,3 +80,4 @@ Teodors juksekode:
 
 - Kunne minimere kommentarene så man ikke får en evig scroll
 - Få de nyeste kommentarene først
+- sende folk som trykker på "hadet"-knappen til en tilfeldig URLOG-side (https://urlog.apps.garden/)
