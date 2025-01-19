@@ -93,7 +93,7 @@ Denne har ikke linjeskift som funker. "
                      :margin 20
                      :display "block"
                      :max-width "100%"}
-             :src "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Steilk%C3%BCste_bei_Ahrenshoop.jpg/600px-Steilk%C3%BCste_bei_Ahrenshoop.jpg"}]
+             :src "/logo_1.png"}]
 
 
       (identity
