@@ -61,7 +61,7 @@ Denne har ikke linjeskift som funker. "
  [:br]
  "dette er linjeskift"]
 
-(defn hamburger [informasjon]
+(defn hamburger [_]
   (html
    [:html
     [:head
@@ -255,15 +255,9 @@ Denne har ikke linjeskift som funker. "
 (defn run-server []
   (server/run-server #'wrapped-handler {:port 7777}))
 
-(defonce server (run-server))
+(defonce ^:export server (run-server))
 
-(defn klubbvask [x])
-
-(comment
-  (server)
-  (alter-var-root #'server (constantly (run-server)))
-  server
-  (clojure.repl/doc server/run-server))
+(defn ^:export klubbvask [_])
 
 (comment
   ;Vi skal lære hashmap og atom.
