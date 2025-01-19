@@ -70,11 +70,14 @@ Teodors juksekode:
     - Skriv teksten
     - Lag styling
 
+# 19.1.25
+
+- ✓ Endre bilde til noe annet
+- ✓ Lage en basic logo
+
 # Oppgaver til neste gang
 
 - Hvis du tør, gjør noe nytt
-- Endre bilde til noe annet
-- Lage en basic logo
 
 # Ideer på sikt
 
