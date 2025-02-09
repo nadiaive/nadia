@@ -83,9 +83,9 @@ Teodors juksekode:
 
 Fokus: SQL med Pokémon.
 
-- SQL-tabell med Pokémon
-- Pokémon-navn og Pokédex-nummer
-- Starte i SQLiteBrowser, fortsette i Clojure
+- ✓ SQL-tabell med Pokémon
+- ✓ Pokémon-navn og Pokédex-nummer
+- ✓ Starte i SQLiteBrowser, fortsette i Clojure
 
 ## SQLiteBrowser
 
@@ -94,6 +94,11 @@ Info: https://sqlitebrowser.org/dl/
 
 # Oppgaver til neste gang
 
+- Legge til lenke til pokemonsiden på hovedsiden og motsatt
+- Legge til flere pokemons
+- Gjøre pokemonsiden finere
+- Hente inn bilder?????
+- Legge til en ny tabell for å lære joins?
 - Hvis du tør, gjør noe nytt
 
 # Ideer på sikt
