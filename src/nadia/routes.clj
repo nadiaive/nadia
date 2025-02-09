@@ -4,6 +4,7 @@
    [duratom.core :refer [duratom]]
    [hiccup.page :refer [include-js]]
    [hiccup2.core :refer [html]]
+   [nadia.pokemon :as pokemon]
    [nadia.sider :as sider]
    [org.httpkit.server :as server]
    [ring.middleware.params :refer [wrap-params]]
@@ -242,6 +243,7 @@ Denne har ikke linjeskift som funker. "
   (let [handler (condp = ((juxt :request-method :uri) req)
                   [:head "/"] ok
                   [:get "/"] hovedside
+                  [:get "/pokemon"] pokemon/pokemonside
                   [:post sider/si-hei] si-hei
                   [:post "/knapp2"] napp2
                   [:post sider/lagre-innlegg] lagre-innlegg
