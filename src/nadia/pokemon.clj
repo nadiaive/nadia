@@ -12,11 +12,13 @@
         (for [p (j/execute! db ["SELECT pokedex_number, name from pokemon"])]
           [:p (:pokemon/name p)
            (:pokemon/pokedex_number p)])))
+#_(pokemonside)
 
 (defn pokemon-handler [_request]
   {:status 200
    :headers {"Content-Type" "text/html"}
    :body (str (html (pokemonside)))})
+#_(pokemon-handler {})
 
 (comment
   ;; NADIA SIN
