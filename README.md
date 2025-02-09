@@ -1,11 +1,5 @@
 # Plan
 
-- ✓ Rydd opp: skal hete "innlegg", ikke "tekst"
-- ✓ Legg til uuid på innlegg
-- ✓ Legg til tidspunkt på innlegg
-- ✓ Mat
-- ✓ Tur eller noe sånt som ikke er kode
-
 # Hvordan starte - Nadia
 
 - Finne riktig mappe å åpne
@@ -55,7 +49,9 @@ Teodors juksekode:
 1. Refactor rename (F2 på VSCode)
 2. Evaluer hele fila med `ctrl+option+c` og så trykker du `enter`
 
-# Mål 1.1.25
+# 1.1.25
+
+## Mål
 
 - Lage en ordentlig overskrift (h1?)
     - ✓ Endre teksten
@@ -63,7 +59,15 @@ Teodors juksekode:
     - ✓ Midtstille skriften
     - ✓ Endre fonttype
     - ✓ Fjerne smilefjeset
-    
+
+## Progresjon
+
+- ✓ Rydd opp: skal hete "innlegg", ikke "tekst"
+- ✓ Legg til uuid på innlegg
+- ✓ Legg til tidspunkt på innlegg
+- ✓ Mat
+- ✓ Tur eller noe sånt som ikke er kode
+
 # 3.1.25
 
 - ✓ Skrive en brødtekst under overskriften om denne siden
@@ -74,6 +78,19 @@ Teodors juksekode:
 
 - ✓ Endre bilde til noe annet
 - ✓ Lage en basic logo
+
+# 9.2.25
+
+Fokus: SQL med Pokémon.
+
+- SQL-tabell med Pokémon
+- Pokémon-navn og Pokédex-nummer
+- Starte i SQLiteBrowser, fortsette i Clojure
+
+## SQLiteBrowser
+
+Installerte SQLiteBrowser.
+Info: https://sqlitebrowser.org/dl/
 
 # Oppgaver til neste gang
 
