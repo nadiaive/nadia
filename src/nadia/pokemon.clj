@@ -8,10 +8,15 @@
 (def db (j/get-datasource {:dbtype "sqlite" :dbname dbfile}))
 
 (defn pokemonside []
-  (list [:p "Dette er alle pokemonene:"]
-        (for [p (j/execute! db ["SELECT pokedex_number, name from pokemon"])]
-          [:p (:pokemon/name p)
-           (:pokemon/pokedex_number p)])))
+  [:html
+   [:head
+    [:meta {:charset "utf-8"}]
+    [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
+   [:body
+    [:p "Dette er alle pokemonene:"]
+    (for [p (j/execute! db ["SELECT pokedex_number, name from pokemon"])]
+      [:p (:pokemon/name p)
+       (:pokemon/pokedex_number p)])]])
 #_(pokemonside)
 
 (defn pokemon-handler [_request]
