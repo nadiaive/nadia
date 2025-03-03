@@ -1,7 +1,8 @@
 (ns nadia.pokemon
   (:require
    [hiccup2.core :refer [html]]
-   [next.jdbc :as j]))
+   [next.jdbc :as j]
+   [teodor.pokeapi :as pokeapi]))
 
 (def dbfile (str (System/getenv "GARDEN_STORAGE") "/pokemon.db"))
 
@@ -16,7 +17,11 @@
     [:p "Dette er alle pokemonene:"]
     (for [p (j/execute! db ["SELECT pokedex_number, name from pokemon"])]
       [:p (:pokemon/name p)
-       (:pokemon/pokedex_number p)])]])
+       (:pokemon/pokedex_number p)])
+
+    [:p "Bilde av Mew:"]
+    [:img {:src (-> (pokeapi/entity :pokemon/mew)
+                    :sprites :front_default)}]]])
 #_(pokemonside)
 
 (defn pokemon-handler [_request]
