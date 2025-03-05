@@ -23,7 +23,7 @@
     [:img {:src (-> (pokeapi/entity :pokemon/mew)
                     :sprites :front_default)}]
 
-    [:p "Bilde av Mewtwo"]
+    [:p "Bilde av Mewtwo:"]
     [:img {:src (-> (pokeapi/entity :pokemon/mewtwo)
                     :sprites :front_default)}]]])
 #_(pokemonside)
