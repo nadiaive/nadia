@@ -21,7 +21,7 @@
   (keys (hent-pokemon 25))
   (:name (hent-pokemon 25))
   (:id (hent-pokemon 25))
-  (sett-inn-pokemon! 76)
+  (sett-inn-pokemon! 25)
   )
 
 
