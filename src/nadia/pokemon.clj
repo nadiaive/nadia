@@ -14,9 +14,10 @@
     [:meta {:charset "utf-8"}]
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
    [:body
-    [:p "Dette er alle pokemonene:"]
+    [:p "Dette er alle pokemonene (som jeg har orket å legge inn riktignok):"]
     (for [p (j/execute! db ["SELECT pokedex_number, name from pokemon"])]
       [:p (:pokemon/name p)
+       [:br]
        (:pokemon/pokedex_number p)])
 
     [:p "Bilde av Mew:"]
@@ -25,6 +26,10 @@
 
     [:p "Bilde av Mewtwo:"]
     [:img {:src (-> (pokeapi/entity :pokemon/mewtwo)
+                    :sprites :front_default)}]
+    
+    [:p "Bilde av Pikachu:"]
+    [:img {:src (-> (pokeapi/entity :pokemon/pikachu)
                     :sprites :front_default)}]
 
     [:p "Video av U2:"]
@@ -57,8 +62,10 @@
 
   ;; 2. putt in Bulbasaur
   (j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (1,'Bulbasaur')"])
+  (j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (2,'Ivysaur')"])
+  (j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (3,'Venusaur')"])
   (j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (4,'Charmander')"])
-
+  
   ;; 3. gjør en select.
   (j/execute! db ["SELECT pokedex_number,name from pokemon"])
 
@@ -79,7 +86,7 @@
 (comment
   ;; Trene på maps og for-loop
   
-  (def pokemonene [{:pokemon/pokedex_number 1, :pokemon/name "Bulbasaur"} {:pokemon/pokedex_number 4, :pokemon/name "Charmander"}]
+  (def pokemonene [{:pokemon/pokedex_number 1, :pokemon/name "Bulbasaur"} {:pokemon/pokedex_number 2, :pokemon/name "Ivysaur"} {:pokemon/pokedex_number 4, :pokemon/name "Charmander"}]
 )
 
   (for [p pokemonene]
