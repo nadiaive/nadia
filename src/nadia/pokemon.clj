@@ -8,6 +8,24 @@
 
 (def db (j/get-datasource {:dbtype "sqlite" :dbname dbfile}))
 
+(defn hent-pokemon [nummer]
+  (pokeapi/call (str "https://pokeapi.co/api/v2/pokemon/" nummer)))
+(defn sett-inn-pokemon! [nummer]
+  (let [pokemon (hent-pokemon nummer)]
+    (j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (?,?)"
+                    (:id pokemon)
+                    (:name pokemon)]))
+)
+(comment 
+  (hent-pokemon 25)
+  (keys (hent-pokemon 25))
+  (:name (hent-pokemon 25))
+  (:id (hent-pokemon 25))
+  (sett-inn-pokemon! 76)
+  )
+
+
+
 (defn pokemonside []
   [:html
    [:head
@@ -15,10 +33,9 @@
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
    [:body
     [:p "Dette er alle pokemonene (som jeg har orket å legge inn riktignok):"]
-    (for [p (j/execute! db ["SELECT pokedex_number, name from pokemon"])]
-      [:p (:pokemon/name p)
-       [:br]
-       (:pokemon/pokedex_number p)])
+    (for [p (j/execute! db ["SELECT pokedex_number, name from pokemon ORDER BY pokedex_number"])]
+      [:p (:pokemon/pokedex_number p) " "
+       (:pokemon/name p)])
 
     [:p "Bilde av Mew:"]
     [:img {:src (-> (pokeapi/entity :pokemon/mew)
@@ -65,9 +82,18 @@
   (j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (2,'Ivysaur')"])
   (j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (3,'Venusaur')"])
   (j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (4,'Charmander')"])
-  
+
   ;; 3. gjør en select.
-  (j/execute! db ["SELECT pokedex_number,name from pokemon"])
+  (j/execute! db ["SELECT pokedex_number,name from pokemon ORDER BY pokedex_number"])
+  (let [nummer 6
+        pokemon (hent-pokemon nummer)]
+    (:id pokemon)
+    (:name pokemon)
+(j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (?,?)"
+                (:id pokemon)
+                (:name pokemon)])
+
+    )
 
   )
 
