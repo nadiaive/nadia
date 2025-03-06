@@ -8,14 +8,40 @@
 
 (def db (j/get-datasource {:dbtype "sqlite" :dbname dbfile}))
 
+(j/execute! db ["create table if not exists image (id integer primary key, pokedex_number integer not null, url text not null)"])
+#_(j/execute! db ["drop table image"])
+
+(defn pokemon->images [pokemon]
+  (->> [(:front_default (:sprites pokemon))
+        (:back_default (:sprites pokemon))]
+       (remove nil?)
+       (mapv (fn [url]
+               {:image/pokedex_number (:id pokemon)
+                :image/url url}))))
+
+(defn insert-pokemon-images! [db pokemon]
+  (doseq [image (pokemon->images pokemon)]
+    (j/execute-one! db ["insert into image(pokedex_number, url) values (?, ?)"
+                        (:image/pokedex_number image)
+                        (:image/url image)])))
+
+(comment
+  ;; bilder for de første 151 pokemon
+  (doseq [pokemon (pmap pokeapi/entity (pokeapi/pokemon-fra-dex :pokedex/kanto))]
+    (insert-pokemon-images! db pokemon))
+
+  (j/execute-one! db ["select count(*) from image"])
+  )
+
 (defn hent-pokemon [nummer]
   (pokeapi/call (str "https://pokeapi.co/api/v2/pokemon/" nummer)))
+
 (defn sett-inn-pokemon! [nummer]
   (let [pokemon (hent-pokemon nummer)]
     (j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (?,?)"
                     (:id pokemon)
                     (:name pokemon)]))
-)
+  )
 (comment 
   (hent-pokemon 25)
   (keys (hent-pokemon 25))
