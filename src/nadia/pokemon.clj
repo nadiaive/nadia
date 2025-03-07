@@ -58,7 +58,7 @@
     [:meta {:charset "utf-8"}]
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
    [:body
-    [:p "Dette er alle pokemonene (som jeg har orket å legge inn riktignok):"]
+    [:p "Dette er noen pokemonens av de 151 første (som jeg har orket å legge inn riktignok):"]
     (for [p (j/execute! db ["SELECT pokedex_number, name from pokemon ORDER BY pokedex_number"])]
       [:p (:pokemon/pokedex_number p) " "
        (:pokemon/name p)])
@@ -115,12 +115,20 @@
         pokemon (hent-pokemon nummer)]
     (:id pokemon)
     (:name pokemon)
-(j/execute! db ["insert into pokemon(pokedex_number,name) VALUES (?,?)"
+
+    db
+(j/execute! db ["SELECT pokedex_number, name from pokemon ORDER BY pokedex_number"
                 (:id pokemon)
                 (:name pokemon)])
 
     )
-
+(j/execute! db["SELECT pokedex_number, name from pokemon"])
+  
+(j/execute! db["SELECT * from image limit 1"])
+  
+(j/execute! db["SELECT p.pokedex_number, p.name, i.url from pokemon p JOIN image i ON i.pokedex_number = p.pokedex_number"])
+  
+ (j/execute! db["SELECT * FROM pokemon p JOIN image i ON i.pokedex_number = p.pokedex_number"]) 
   )
 
 (comment
