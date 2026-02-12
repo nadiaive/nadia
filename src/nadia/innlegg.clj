@@ -1,6 +1,11 @@
 (ns nadia.innlegg
   (:require
-[hiccup2.core :refer [html]]))
+   [hiccup2.core :refer [html]]
+   [babashka.fs :as fs]))
+
+(defn les-alle [filbaner]
+  (map (comp slurp fs/file)
+       filbaner))
 
 (defn render []
   [:html
@@ -9,7 +14,8 @@
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
    [:body
     [:h2 "Hei!"]
-    (slurp "posts/2026-02-12.htm")]])
+    (les-alle (fs/list-dir "posts"))
+    ]])
 
 (defn side [_request]
   {:status 200
