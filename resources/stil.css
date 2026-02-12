@@ -1,0 +1,14 @@
+body {
+    background-color: #DDDDDD;
+}
+
+n-innleggene {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+n-innlegg {
+    padding: 16px;
+    margin-bottom: 16px;
+}
