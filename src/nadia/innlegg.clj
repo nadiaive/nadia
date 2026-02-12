@@ -5,7 +5,7 @@
 
 (defn les-alle [filbaner]
   (map (comp slurp fs/file)
-       filbaner))
+       (reverse (sort filbaner))))
 
 (defn render []
   [:html
